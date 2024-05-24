@@ -1,6 +1,6 @@
 ﻿namespace usadmin_dashboard.Models
 {
-    public class MastersUsGrants
+    public class masters_us_grants
     {
         public uint GrantIndex { get; set; }
         public string GrantTitle { get; set; }
