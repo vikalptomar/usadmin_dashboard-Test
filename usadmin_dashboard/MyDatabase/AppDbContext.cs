@@ -4,9 +4,12 @@ namespace usadmin_dashboard.MyDatabase
 {
     public class AppDbContext : DbContext
     {
+        internal object masters_audit_trial;
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<masters_us_grants> masters_us_grants { get; set; }
+        public DbSet<AuditLogs> masters_audit_trail { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -14,6 +17,7 @@ namespace usadmin_dashboard.MyDatabase
             {
                 entity.HasKey(e => e.GrantIndex).HasName("PRIMARY");
                 entity.ToTable("masters_us_grants");
+          
                 //entity.Property(e => e.GrantIndex).HasColumnName("GrantIndex");
                 //entity.Property(e => e.GrantTitle).HasColumnName("GrantTitle");
                 //entity.Property(e => e.LinkURL).HasColumnName("LinkURL");
@@ -41,8 +45,13 @@ namespace usadmin_dashboard.MyDatabase
                 //entity.Property(e => e.ViewCount).HasColumnName("ViewCount");
                 //entity.Property(e => e.ENTITYSTRING).HasColumnName("ENTITYSTRING");
             });
+            modelBuilder.Entity<AuditLogs>(entity =>
+            {
+                entity.HasKey(e => e.TrailLogIndex).HasName("PRIMARY");
+                entity.ToTable("master_audit_trail");
+            });
 
-           /* base.OnModelCreating(modelBuilder);*/
+            // base.OnModelCreating(modelBuilder);
 
         }
 
