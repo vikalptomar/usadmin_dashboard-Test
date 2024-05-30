@@ -15,9 +15,9 @@ namespace usadmin_dashboard.Controllers
             _obj1 = obj;
         }
         [HttpGet("GetAuditRecord")]
-        public async Task<IActionResult> GetAuditLogsAsync()
+        public async Task<IActionResult> GetAuditLogsAsync(DateTime date)
         {
-            var res = await _obj1.GetAuditLogsAsync();
+            var res = await _obj1.GetAuditLogsAsync(date);
             return Ok(res);
         }
     }

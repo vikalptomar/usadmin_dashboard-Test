@@ -41,7 +41,7 @@ namespace usadmin_dashboard.Controllers
             if (ValidRecord == true)
             {
                 var res = await _usGrantsService.InsertRecord(_Us_Grants);
-                var getAudit = await auditLogsService.GetAuditLogsAsync();
+               // var getAudit = await auditLogsService.GetAuditLogsAsync();
                 var jsonData = new
                 {
                     CountyIndex = res.GrantIndex,
@@ -74,5 +74,19 @@ namespace usadmin_dashboard.Controllers
                 return Ok(new { SuccessMessage, SuccessCode });
             }
         }
+
+        [HttpGet("GetUsersRecord")]
+
+        public async Task<IActionResult> GetUsersRecord(DateTime date)
+        {
+            var res = await auditLogsService.GetAuditLogsAsync(date);
+
+            return Ok(res);
+        }
+
+
+          
+    
     }
+
 }
