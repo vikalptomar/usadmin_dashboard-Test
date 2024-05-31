@@ -36,9 +36,7 @@ namespace usadmin_dashboard.Services
                     }).ToList()
                 }).
                 ToListAsync();
-
             return result;
-
         }
         public async Task<AuditLogs> InsertLogs(AuditLogs auditLogs)
         {
